@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -9,9 +10,12 @@ const slides = [
     eyebrow: "Welcome to Samanvaya",
     heading: "Compassionate Care for Your Beloved Pets",
     subtitle:
-      "State-of-the-art veterinary medicine delivered with warmth and expertise.",
+      "Advanced diagnostics, modern equipment, expert medicine — delivered with warmth.",
     cta: { label: "Our Services", href: "/medical-care" },
-    gradient: "linear-gradient(135deg, var(--color-accent-from), var(--color-accent-to))",
+    gradient:
+      "linear-gradient(135deg, var(--color-accent-from), var(--color-accent-to))",
+    image: "/images/state-of-the-art-equipment.png",
+    imageAlt: "State of teh Art Equipment",
   },
   {
     eyebrow: "Meet Our Team",
@@ -19,15 +23,30 @@ const slides = [
     subtitle:
       "Our experienced doctors and support staff are here for you and your pet every step of the way.",
     cta: { label: "Meet the Team", href: "/about-us" },
-    gradient: "linear-gradient(90deg, var(--color-accent-from) 0%, #002d5a 50%, var(--color-accent-to) 100%)",
+    gradient:
+      "linear-gradient(90deg, var(--color-accent-from) 0%, #002d5a 50%, var(--color-accent-to) 100%)",
   },
   {
     eyebrow: "Full-Service Hospital",
     heading: "Everything Your Pet Needs Under One Roof",
     subtitle:
-      "From routine checkups to advanced procedures — we've got you covered.",
+      "From routine checkups to grooming needs — we've got you covered.",
     cta: { label: "Book an Appointment", href: "/book-appointment" },
-    gradient: "linear-gradient(180deg, var(--color-accent-from), var(--color-accent-to))",
+    gradient:
+      "linear-gradient(180deg, var(--color-accent-from), var(--color-accent-to))",
+    image: "/images/grooming.png",
+    imageAlt: "Best veneternary care in udupi",
+  },
+  {
+    eyebrow: "Advanced Surgery",
+    heading: "Expert Surgical Care for Your Pet",
+    subtitle:
+      "Our skilled veterinary surgeons perform a wide range of procedures using modern techniques and equipment.",
+    cta: { label: "Learn More", href: "/medical-care" },
+    gradient:
+      "linear-gradient(45deg, var(--color-accent-to), var(--color-accent-from))",
+    image: "/images/surgeries.png",
+    imageAlt: "Veterinary surgery in progress",
   },
 ];
 
@@ -81,7 +100,7 @@ export function HeroSlider() {
         startTimer();
       }
     },
-    [paused, stopTimer, startTimer]
+    [paused, stopTimer, startTimer],
   );
 
   const prev = useCallback(() => {
@@ -124,31 +143,56 @@ export function HeroSlider() {
               style={{ background: slide.gradient }}
             />
 
-            <div className="relative z-10 container-fluid flex flex-col justify-center h-full">
-              <div className="max-w-2xl">
-                {slide.eyebrow && (
-                  <>
-                    <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-white/70">
-                      {slide.eyebrow}
-                    </span>
-                    <hr className="mt-2 mb-6 w-10 border-white/40" />
-                  </>
-                )}
-                <h2 className="font-heading font-semibold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
-                  {slide.heading}
-                </h2>
-                <p className="text-white/75 text-lg md:text-xl max-w-xl mb-8">
-                  {slide.subtitle}
-                </p>
-                {slide.cta && (
-                  <Link
-                    href={slide.cta.href}
-                    className="special-link-btn inline-flex items-center justify-center px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider"
-                  >
-                    {slide.cta.label}
-                  </Link>
-                )}
+            <div
+              className={
+                "relative z-10 container-fluid h-full grid " +
+                ("image" in slide && slide.image
+                  ? "grid-cols-1 lg:grid-cols-2 gap-8"
+                  : "grid-cols-1 content-center")
+              }
+            >
+              <div
+                className={
+                  "image" in slide && slide.image ? "flex items-center" : ""
+                }
+              >
+                <div className="max-w-2xl">
+                  {slide.eyebrow && (
+                    <>
+                      <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-white/70">
+                        {slide.eyebrow}
+                      </span>
+                      <hr className="mt-2 mb-6 w-10 border-white/40" />
+                    </>
+                  )}
+                  <h2 className="font-heading font-semibold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
+                    {slide.heading}
+                  </h2>
+                  <p className="text-white/75 text-lg md:text-xl max-w-xl mb-8">
+                    {slide.subtitle}
+                  </p>
+                  {slide.cta && (
+                    <Link
+                      href={slide.cta.href}
+                      className="special-link-btn inline-flex items-center justify-center px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider"
+                    >
+                      {slide.cta.label}
+                    </Link>
+                  )}
+                </div>
               </div>
+              {"image" in slide && slide.image && (
+                <div className="relative h-56 lg:h-full">
+                  <Image
+                    src={slide.image}
+                    alt={slide.imageAlt ?? ""}
+                    fill
+                    className="object-contain"
+                    priority={index === 0}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+              )}
             </div>
           </div>
         );

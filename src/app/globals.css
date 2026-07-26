@@ -164,12 +164,26 @@
   }
 }
 
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .marquee-scroll {
   animation: marquee 60s linear infinite;
 }
 
+.marquee-scroll-reverse {
+  animation: marquee-reverse 60s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-scroll {
+  .marquee-scroll,
+  .marquee-scroll-reverse {
     animation: none;
   }
 }

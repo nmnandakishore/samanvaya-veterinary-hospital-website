@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 // ─── Placeholder gallery images ──────────────────────────────────
 // TODO: Replace with real pet photography once available.
@@ -46,34 +46,56 @@ const pets = [
 
 const items = [...pets, ...pets];
 
+function PetCard({ pet, isHovered, onHover, onLeave }: { pet: typeof pets[number]; isHovered: boolean; onHover: () => void; onLeave: () => void }) {
+  return (
+    <div
+      className="relative shrink-0 w-48 md:w-56 h-48 md:h-56"
+      style={{ zIndex: isHovered ? 10 : 1 }}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
+      <div
+        className="absolute inset-0 transition-transform duration-300 origin-center"
+        style={{ transform: isHovered ? "scale(1.5)" : "scale(1)" }}
+      >
+        <Image
+          src={pet.src}
+          alt={pet.alt}
+          fill
+          className="object-cover transition-all duration-500"
+          sizes="224px"
+          loading="eager"
+          style={{ filter: isHovered ? "grayscale(0)" : "grayscale(1)" }}
+        />
+
+        <div
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            background:
+              "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 40%, transparent 70%)",
+          }}
+        />
+
+        <div
+          className="absolute bottom-0 left-0 p-4 pointer-events-none transition-opacity duration-300"
+          style={{ opacity: isHovered ? 1 : 0 }}
+        >
+          <h3 className="font-heading font-semibold text-md text-white">
+            {pet.name}
+          </h3>
+          <p className="text-xs leading-snug mt-0.5 text-white/85">
+            {pet.treatment}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function PetGallery() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [offset, setOffset] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const animRef = useRef<number | null>(null);
-  const posRef = useRef(0);
-  const speedRef = useRef(0.5);
-
-  useEffect(() => {
-    const cardW = 224; // md:w-56 = 224px
-    const totalW = cardW * pets.length;
-
-    const tick = () => {
-      if (hoveredIndex === null) {
-        posRef.current -= speedRef.current;
-        if (posRef.current <= -totalW) {
-          posRef.current += totalW;
-        }
-        setOffset(posRef.current);
-      }
-      animRef.current = requestAnimationFrame(tick);
-    };
-
-    animRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, [hoveredIndex]);
+  const hoveredRow = hoveredIndex !== null ? (hoveredIndex < items.length ? 0 : 1) : -1;
 
   return (
     <section className="py-20 md:py-28 overflow-hidden">
@@ -89,60 +111,39 @@ export function PetGallery() {
         </div>
       </div>
 
-      <div ref={containerRef} className="relative h-48 md:h-56">
-        <div
-          className="flex"
-          style={{ transform: `translateX(${offset}px)`, width: "max-content" }}
-        >
-          {items.map((pet, i) => {
-            const isHovered = hoveredIndex === i;
-            return (
-              <div
-                key={i}
-                className="relative shrink-0 w-48 md:w-56 h-48 md:h-56"
-                style={{ zIndex: isHovered ? 10 : 1 }}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                {/* Scaled container — image, gradient, and text all scale together */}
-                <div
-                  className="absolute inset-0 transition-transform duration-300 origin-center"
-                  style={{ transform: isHovered ? "scale(1.5)" : "scale(1)" }}
-                >
-                  <Image
-                    src={pet.src}
-                    alt={pet.alt}
-                    fill
-                    className="object-cover"
-                    sizes="224px"
-                  />
+      {/* Row 1 — scrolls left */}
+      <div
+        className="relative h-48 md:h-56 marquee-scroll hover:[animation-play-state:paused]"
+        style={{ zIndex: hoveredRow === 0 ? 20 : 1 }}
+      >
+        <div className="flex" style={{ width: "max-content" }}>
+          {items.map((pet, i) => (
+            <PetCard
+              key={`r1-${i}`}
+              pet={pet}
+              isHovered={hoveredIndex === i}
+              onHover={() => setHoveredIndex(i)}
+              onLeave={() => setHoveredIndex(null)}
+            />
+          ))}
+        </div>
+      </div>
 
-                  {/* Gradient backdrop */}
-                  <div
-                    className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-                    style={{
-                      opacity: isHovered ? 1 : 0,
-                      background:
-                        "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 40%, transparent 70%)",
-                    }}
-                  />
-
-                  {/* Text */}
-                  <div
-                    className="absolute bottom-0 left-0 p-4 pointer-events-none transition-opacity duration-300"
-                    style={{ opacity: isHovered ? 1 : 0 }}
-                  >
-                    <h3 className="font-heading font-semibold text-md text-white">
-                      {pet.name}
-                    </h3>
-                    <p className="text-xs leading-snug mt-0.5 text-white/85">
-                      {pet.treatment}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+      {/* Row 2 — scrolls right */}
+      <div
+        className="relative h-48 md:h-56 marquee-scroll-reverse hover:[animation-play-state:paused]"
+        style={{ zIndex: hoveredRow === 1 ? 20 : hoveredRow === 0 ? 0 : 1 }}
+      >
+        <div className="flex" style={{ width: "max-content" }}>
+          {items.map((pet, i) => (
+            <PetCard
+              key={`r2-${i}`}
+              pet={pet}
+              isHovered={hoveredIndex === items.length + i}
+              onHover={() => setHoveredIndex(items.length + i)}
+              onLeave={() => setHoveredIndex(null)}
+            />
+          ))}
         </div>
       </div>
     </section>
