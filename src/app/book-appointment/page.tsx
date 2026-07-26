@@ -1,0 +1,36 @@
+import Link from "next/link";
+import { Calendar, Phone } from "lucide-react";
+
+export default function BookAppointmentPage() {
+  return (
+    <div className="container-fluid py-20 md:py-28 text-center">
+      <div className="max-w-lg mx-auto">
+        <div className="flex items-center justify-center size-16 rounded-full bg-surface-soft mx-auto mb-6">
+          <Calendar className="size-8 text-primary" strokeWidth={1.5} />
+        </div>
+        <h1 className="font-heading font-semibold text-primary text-3xl md:text-4xl mb-4">
+          Online Booking — Coming Soon
+        </h1>
+        <p className="text-primary/65 mb-8 leading-relaxed">
+          We are working on a convenient online booking system so you can
+          schedule appointments anytime. Until then, please give us a call.
+        </p>
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <Phone className="size-5 text-secondary" strokeWidth={1.5} />
+          <a
+            href="tel:+911234567890"
+            className="font-heading font-semibold text-primary text-xl hover:text-secondary transition-colors"
+          >
+            +91 12345 67890
+          </a>
+        </div>
+        <Link
+          href="/"
+          className="special-link-btn inline-flex items-center justify-center px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider"
+        >
+          Back to Home
+        </Link>
+      </div>
+    </div>
+  );
+}
