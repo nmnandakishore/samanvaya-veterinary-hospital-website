@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, Building2, Users, FileText, GraduationCap, Handshake } from "lucide-react";
+import RelatedServices from "@/components/sections/related-services";
 
 const services = [
   { icon: Building2, title: "Breeder Partnerships", description: "Comprehensive health screening, genetic testing, and reproductive support for ethical breeders." },
@@ -100,6 +101,13 @@ export default function ProfessionalCarePage() {
           </Link>
         </div>
       </section>
+
+      <RelatedServices services={[
+        { title: "Rescue Support", href: "/rescue-support", summary: "Discounted veterinary care and partnership programmes for rescue organisations." },
+        { title: "Medical Care", href: "/medical-care", summary: "Comprehensive medical services from routine checkups to advanced procedures." },
+        { title: "Specialty Care", href: "/specialty-care", summary: "Advanced specialist consultations and treatment for complex conditions." },
+        { title: "Contact Us", href: "/contact-us", summary: "Get in touch with our team to discuss partnership opportunities." },
+      ]} />
     </>
   );
 }

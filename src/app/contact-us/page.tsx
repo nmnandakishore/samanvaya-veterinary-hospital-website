@@ -189,6 +189,58 @@ export default function ContactUsPage() {
           </div>
         </div>
       </section>
+
+      {/* Map + Hours */}
+      <section className="py-20 md:py-28 bg-surface">
+        <div className="container-fluid">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
+            <div className="md:col-span-3">
+              <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
+                Find Us
+              </span>
+              <hr className="mt-2 mb-6 w-10 border-secondary/40" />
+              <div className="relative w-full h-[320px] border border-gray-200 overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.985717148435!2d77.594562!3d12.971599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDU4JzE3LjgiTiA3N8KwMzUnNDAuNCJF!5e0!3m2!1sen!2sin!4v1"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Samanvaya Veterinary Hospital location"
+                  className="absolute inset-0"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-2">
+              <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
+                Visiting Hours
+              </span>
+              <hr className="mt-2 mb-6 w-10 border-secondary/40" />
+              <div className="space-y-4">
+                {[
+                  { day: "Monday – Friday", hours: "9:00 AM – 7:00 PM" },
+                  { day: "Saturday", hours: "9:00 AM – 5:00 PM" },
+                  { day: "Sunday", hours: "10:00 AM – 2:00 PM" },
+                  { day: "Emergency", hours: "24 / 7" },
+                ].map((s) => (
+                  <div key={s.day} className="flex items-center justify-between border-b border-gray-200 pb-3 last:border-0 last:pb-0">
+                    <span className="text-primary font-heading font-medium text-sm">{s.day}</span>
+                    <span className={`text-sm font-medium ${s.day === "Emergency" ? "text-secondary" : "text-primary/65"}`}>{s.hours}</span>
+                  </div>
+                ))}
+              </div>
+              <p className="text-primary/55 text-xs mt-6 leading-relaxed">
+                Emergency services are available around the clock. If your pet is
+                experiencing a medical emergency, please visit our{" "}
+                <a href="/emergency-care" className="text-secondary underline hover:text-primary transition-colors">emergency care page</a>{" "}
+                or call us immediately.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

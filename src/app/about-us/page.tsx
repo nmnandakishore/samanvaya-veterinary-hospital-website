@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Award, Heart, Users, Building2 } from "lucide-react";
+import { Award, Heart, Users, Building2, GraduationCap } from "lucide-react";
+import RelatedServices from "@/components/sections/related-services";
 
 const stats = [
   { icon: Heart, value: "12,000+", label: "Pets Treated" },
@@ -25,6 +26,12 @@ const values = [
     description:
       "We believe in educating and involving pet owners at every step, because informed decisions lead to better outcomes.",
   },
+];
+
+const team = [
+  { name: "Dr. Anirudh", role: "Lead Veterinarian", qualification: "BVSc & AH", image: "/images/team/Dr1.webp" },
+  { name: "Dr. Harish", role: "Senior Surgeon", qualification: "BVSc & AH, MS (Surgery)", image: "/images/team/Dr2.jpg" },
+  { name: "Dr. Subramhanya", role: "Veterinary Physician", qualification: "BVSc & AH, MVSc (Medicine)", image: "/images/team/Dr3.avif" },
 ];
 
 export default function AboutUsPage() {
@@ -124,43 +131,42 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Team CTA */}
+      {/* Meet Our Team */}
       <section className="py-20 md:py-28">
         <div className="container-fluid">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
-                Meet Our Team
-              </span>
-              <hr className="mt-2 mb-6 w-10 border-secondary/40" />
-              <h2 className="font-heading font-semibold text-primary text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
-                Experienced Professionals Who Care
-              </h2>
-              <p className="text-primary/65 leading-relaxed mb-8">
-                Our team of experienced veterinarians, skilled technicians, and
-                compassionate support staff work together to deliver the highest
-                standard of care. Every member of our staff shares a genuine love
-                for animals and a commitment to your pet&rsquo;s health.
-              </p>
-              <Link
-                href="/contact-us"
-                className="special-link-btn inline-flex items-center justify-center px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider"
-              >
-                Get in Touch
-              </Link>
-            </div>
-            <div className="relative min-h-[360px] rounded-[10px] overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
-                alt="Veterinary team"
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
+          <div className="mb-14">
+            <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
+              Meet Our Team
+            </span>
+            <hr className="mt-2 mb-5 w-10 border-secondary/40" />
+            <h2 className="font-heading font-semibold text-primary text-3xl md:text-4xl lg:text-5xl">
+              Experienced Professionals Who Care
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {team.map((m) => (
+              <div key={m.name} className="border border-gray-200 bg-white p-6 text-center">
+                <div className="mx-auto mb-4 size-28 overflow-hidden rounded-full">
+                  <img src={m.image} alt={m.name} className="size-full object-cover" />
+                </div>
+                <h3 className="font-heading font-semibold text-primary text-base mb-0.5">{m.name}</h3>
+                <p className="text-secondary text-xs font-medium uppercase tracking-wider mb-2">{m.role}</p>
+                <div className="flex items-center justify-center gap-1.5 text-primary/50 text-xs">
+                  <GraduationCap className="size-3.5" strokeWidth={1.5} />
+                  {m.qualification}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      <RelatedServices services={[
+        { title: "Medical Care", href: "/medical-care", summary: "Comprehensive medical services from routine wellness to advanced procedures." },
+        { title: "Emergency Care", href: "/emergency-care", summary: "24/7 emergency services for urgent and life-threatening situations." },
+        { title: "Grooming", href: "/grooming", summary: "Professional grooming services for healthy skin, coat, and hygiene." },
+        { title: "Contact Us", href: "/contact-us", summary: "Reach out to our team for inquiries, appointments, or partnerships." },
+      ]} />
     </>
   );
 }

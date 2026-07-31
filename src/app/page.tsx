@@ -15,7 +15,7 @@ export default function Home() {
       <WhyChooseUs />
       <StepsGuide />
       <AltFeatureBlock
-        imageSrc="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=800&q=80"
+        imageSrc="/images/surgeries2.png"
         imageAlt="A dog in a caring environment"
         eyebrow="About Our Hospital"
         heading="Your Pet&rsquo;s Second Home"
@@ -26,7 +26,7 @@ export default function Home() {
       <PetGallery />
       <TrustSignals />
       <AltFeatureBlock
-        imageSrc="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
+        imageSrc="/images/state-of-the-art-equipment.png"
         imageAlt="Veterinary medical equipment"
         eyebrow="Our Network"
         heading="Trusted by Professionals"

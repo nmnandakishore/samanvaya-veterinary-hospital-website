@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Bone, Cookie, Shirt, Bed, Package, ShoppingBag } from "lucide-react";
+import RelatedServices from "@/components/sections/related-services";
 
 const categories = [
   { icon: Bone, title: "Premium Pet Food", description: "Nutritionally balanced food from trusted global and local brands for every life stage." },
@@ -120,6 +121,13 @@ export default function FoodAccessoriesPage() {
           </Link>
         </div>
       </section>
+
+      <RelatedServices services={[
+        { title: "Grooming", href: "/grooming", summary: "Professional grooming services to keep your pet clean, comfortable, and healthy." },
+        { title: "Wellness & Prevention", href: "/wellness-prevention", summary: "Routine checkups, vaccinations, and preventive care for every life stage." },
+        { title: "Medical Care", href: "/medical-care", summary: "Comprehensive veterinary services from wellness exams to advanced treatment." },
+        { title: "Shop", href: "/shop", summary: "Browse our full range of pet products and accessories online." },
+      ]} />
     </>
   );
 }

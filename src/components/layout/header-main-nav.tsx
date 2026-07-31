@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChevronDownIcon } from "lucide-react";
 import { mainNav } from "@/lib/nav-config";
 import { cn } from "@/lib/utils";
@@ -14,8 +14,9 @@ export function HeaderMainNav() {
     <nav aria-label="Main navigation" className="h-full">
       <ul className="flex items-center h-full">
         {mainNav.map((item) => {
-          const isActive = pathname === item.href;
           const hasChildren = item.children && item.children.length > 0;
+          const childActive = hasChildren ? item.children!.some((c) => pathname === c.href) : false;
+          const isActive = pathname === item.href || childActive;
 
           if (hasChildren) {
             return <NavDropdown key={item.href} item={item} isActive={isActive} />;
@@ -49,6 +50,7 @@ function NavDropdown({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (!open) return;
@@ -72,7 +74,7 @@ function NavDropdown({
     <li className="h-full relative not-last:after:content-[''] not-last:after:absolute not-last:after:right-0 not-last:after:top-1/4 not-last:after:bottom-1/4 not-last:after:w-px not-last:after:bg-primary/15">
       <div ref={ref} className="relative group h-full">
         <button
-          onClick={() => setOpen(!open)}
+          onClick={() => router.push(item.href)}
           onMouseEnter={() => setOpen(true)}
           aria-expanded={open}
           aria-haspopup="true"
@@ -93,17 +95,17 @@ function NavDropdown({
         <div
           onMouseLeave={() => setOpen(false)}
           className={cn(
-            "absolute top-full left-0 pt-1 z-50 transition-opacity duration-150",
+            "absolute top-full left-0 z-50 transition-opacity duration-150",
             open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
           )}
         >
-          <ul className="w-56 rounded-lg border border-gray-200 bg-white py-1 shadow">
+          <ul className="w-64 border border-gray-200 bg-white py-2 shadow">
             {item.children!.map((child) => (
               <li key={child.href}>
                 <Link
                   href={child.href}
                   onClick={() => setOpen(false)}
-                  className="block px-3 py-2 text-sm text-primary hover:bg-surface-soft transition-colors duration-150"
+                  className="block px-4 py-2.5 text-sm text-primary hover:bg-surface-soft transition-colors duration-150"
                 >
                   {child.label}
                 </Link>

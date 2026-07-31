@@ -16,9 +16,17 @@ const footerColumns = [
     title: "Services",
     links: [
       { label: "Medical Care", href: "/medical-care" },
-      { label: "Professional Care", href: "/professional-care" },
+      { label: "Grooming", href: "/grooming" },
       { label: "Food & Accessories", href: "/food-accessories" },
       { label: "Emergency Care", href: "/emergency-care" },
+    ],
+  },
+  {
+    title: "For Partners",
+    links: [
+      { label: "Rescue Support", href: "/rescue-support" },
+      { label: "Breeder Partnerships", href: "#" },
+      { label: "Veterinary Referrals", href: "#" },
     ],
   },
   {
@@ -43,7 +51,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-surface-soft">
       <div className="container-fluid py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h3 className="font-heading font-semibold text-primary text-sm uppercase tracking-wider mb-4">
