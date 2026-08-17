@@ -25,17 +25,16 @@ const footerColumns = [
     title: "For Partners",
     links: [
       { label: "Rescue Support", href: "/rescue-support" },
-      { label: "Breeder Partnerships", href: "#" },
       { label: "Veterinary Referrals", href: "#" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Patient Resources", href: "#" },
-      { label: "FAQs", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Patient Resources", href: "/patient-resources" },
+      { label: "FAQs", href: "/faqs" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-of-service" },
     ],
   },
 ];
@@ -53,7 +52,7 @@ export function SiteFooter() {
       <div className="container-fluid py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {footerColumns.map((column) => (
-            <div key={column.title}>
+            <div key={column.title} className="text-center lg:text-left">
               <h3 className="font-heading font-semibold text-primary text-sm uppercase tracking-wider mb-4">
                 {column.title}
               </h3>
@@ -72,14 +71,22 @@ export function SiteFooter() {
             </div>
           ))}
 
-          <div>
+          <div className="text-center sm:col-span-2 lg:col-span-1 lg:text-left pt-6 sm:pt-0">
             <div className="mb-4">
+              <Image
+                src="/samanvaya-logo.svg"
+                alt="Samanvaya Veterinary Hospital"
+                width={0}
+                height={0}
+                className="w-3/5 h-auto object-contain mx-auto lg:mx-0 lg:hidden"
+                unoptimized
+              />
               <Image
                 src="/samanvaya-logo-horizontal.svg"
                 alt="Samanvaya Veterinary Hospital"
                 width={0}
                 height={0}
-                className="w-3/5 h-auto object-contain"
+                className="w-3/5 h-auto object-contain mx-auto lg:mx-0 hidden lg:block"
                 unoptimized
               />
             </div>
@@ -90,16 +97,16 @@ export function SiteFooter() {
                   className="text-primary/80 hover:text-primary text-sm transition-colors duration-150 inline-flex items-start gap-2"
                 >
                   <MapPin className="size-4 mt-0.5 shrink-0" aria-hidden="true" />
-                  <span>123 Veterinary Lane, Pet City, India</span>
+                  <span>Sai Harsha Pearl Aura, Convent Rd, behind Mother of Sorrows Church, Brahmagiri, Udupi, Karnataka 576101</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+917019079154"
                   className="text-primary/80 hover:text-primary text-sm transition-colors duration-150 inline-flex items-center gap-2"
                 >
                   <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  <span>+91 12345 67890</span>
+                  <span>+91 70190 79154</span>
                 </a>
               </li>
               <li>
@@ -112,7 +119,7 @@ export function SiteFooter() {
                 </a>
               </li>
             </ul>
-            <div className="flex items-center gap-3 mt-6">
+            <div className="flex items-center justify-center lg:justify-start gap-3 mt-6">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (

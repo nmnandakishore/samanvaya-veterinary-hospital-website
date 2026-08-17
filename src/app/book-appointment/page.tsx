@@ -18,10 +18,10 @@ export default function BookAppointmentPage() {
         <div className="flex items-center justify-center gap-3 mb-8">
           <Phone className="size-5 text-secondary" strokeWidth={1.5} />
           <a
-            href="tel:+911234567890"
+            href="tel:+917019079154"
             className="font-heading font-semibold text-primary text-xl hover:text-secondary transition-colors"
           >
-            +91 12345 67890
+            +91 70190 79154
           </a>
         </div>
         <Link

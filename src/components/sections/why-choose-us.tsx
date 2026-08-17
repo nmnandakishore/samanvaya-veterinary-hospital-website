@@ -51,7 +51,7 @@ export function WhyChooseUs() {
               companions&rsquo; health.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+            <div className="grid grid-cols-1 gap-y-8">
               {reasons.map((reason) => {
                 const Icon = reason.icon;
                 return (
@@ -78,7 +78,7 @@ export function WhyChooseUs() {
         {/* Image — right column, full bleed to viewport edge */}
         <div className="relative min-h-[320px] lg:min-h-full">
           <Image
-            src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1200&q=80"
+            src="/images/trust.jpg"
             alt="Veterinarian comforting a dog"
             fill
             className="object-cover"

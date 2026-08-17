@@ -10,6 +10,7 @@ interface AltFeatureBlockProps {
   cta: { label: string; href: string };
   reverse?: boolean;
   className?: string;
+  centerMobile?: boolean;
 }
 
 export function AltFeatureBlock({
@@ -21,6 +22,7 @@ export function AltFeatureBlock({
   cta,
   reverse = false,
   className = "",
+  centerMobile = false,
 }: AltFeatureBlockProps) {
   return (
     <section className={`grid grid-cols-1 lg:grid-cols-2 lg:min-h-[520px] ${className}`}>
@@ -40,11 +42,13 @@ export function AltFeatureBlock({
         className={`flex items-center ${reverse ? "lg:order-1" : ""}`}
         style={{ padding: "clamp(3rem, 5vw, 5rem) clamp(1rem, 3vw, 4rem)" }}
       >
-        <div className="max-w-xl">
+        <div
+          className={`max-w-xl ${centerMobile ? "text-center sm:text-left" : ""}`}
+        >
           <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
             {eyebrow}
           </span>
-          <hr className="mt-2 mb-6 w-10 border-secondary/40" />
+          <hr className={`mt-2 mb-6 w-10 border-secondary/40 ${centerMobile ? "mx-auto sm:mx-0" : ""}`} />
           <h2 className="font-heading font-semibold text-primary text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
             {heading}
           </h2>

@@ -27,13 +27,21 @@ const testimonials = [
   },
 ];
 
-function TestimonialCard({ quote, author }: { quote: string; author: string }) {
+function TestimonialCard({
+  quote,
+  author,
+  width,
+}: {
+  quote: string;
+  author: string;
+  width: number;
+}) {
   return (
-    <div className="w-1/3 shrink-0 px-6">
+    <div className="shrink-0 px-6 text-center sm:text-left" style={{ width: `${width}%` }}>
       <p className="text-primary/75 text-base md:text-lg leading-relaxed mb-6 italic">
         &ldquo;{quote}&rdquo;
       </p>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-center sm:justify-start gap-3">
         <div className="w-px h-5 bg-secondary/40" aria-hidden="true" />
         <span className="text-primary font-medium text-sm">{author}</span>
       </div>
@@ -45,13 +53,17 @@ function TestimonialSlider() {
   const [index, setIndex] = useState(0);
   const [animate, setAnimate] = useState(true);
   const [offset, setOffset] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
   const containerRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const items = [...testimonials, ...testimonials];
 
   const measure = () => {
     if (containerRef.current) {
-      setOffset(containerRef.current.offsetWidth / 3);
+      const width = window.innerWidth;
+      const count = width >= 1024 ? 3 : width >= 768 ? 2 : 1;
+      setVisibleCount(count);
+      setOffset(containerRef.current.offsetWidth / count);
     }
   };
 
@@ -105,11 +117,11 @@ function TestimonialSlider() {
       onBlurCapture={handleMouseLeave}
     >
       <div className="container-fluid mb-14">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl text-center sm:text-left">
           <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
             Testimonials
           </span>
-          <hr className="mt-2 mb-5 w-10 border-secondary/40" />
+          <hr className="mt-2 mb-5 w-10 border-secondary/40 mx-auto sm:mx-0" />
           <h2 className="font-heading font-semibold text-primary text-3xl md:text-4xl lg:text-5xl">
             What Pet Parents Say
           </h2>
@@ -127,7 +139,11 @@ function TestimonialSlider() {
             }}
           >
             {items.map((item, i) => (
-              <TestimonialCard key={i} {...item} />
+              <TestimonialCard
+                key={i}
+                {...item}
+                width={100 / visibleCount}
+              />
             ))}
           </div>
         </div>
@@ -144,11 +160,11 @@ export function TrustSignals() {
       {/* Stats — full-bleed surface-soft background */}
       <div className="py-20 md:py-28 bg-surface-soft/30">
         <div className="container-fluid">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-center sm:text-left">
             <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-secondary">
               By the Numbers
             </span>
-            <hr className="mt-2 mb-5 w-10 border-secondary/40" />
+            <hr className="mt-2 mb-5 w-10 border-secondary/40 mx-auto sm:mx-0" />
             <h2 className="font-heading font-semibold text-primary text-3xl md:text-4xl lg:text-5xl mb-5">
               Our Impact
             </h2>
@@ -160,7 +176,7 @@ export function TrustSignals() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-10 mt-14">
             {stats.map((stat) => (
-              <div key={stat.label}>
+              <div key={stat.label} className="text-center">
                 <div className="font-heading font-semibold text-secondary text-5xl md:text-6xl lg:text-7xl mb-2 leading-none">
                   {stat.value}
                 </div>

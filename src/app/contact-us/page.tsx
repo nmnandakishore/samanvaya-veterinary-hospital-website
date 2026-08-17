@@ -15,8 +15,8 @@ const contactSchema = z.object({
 type ContactForm = z.infer<typeof contactSchema>;
 
 const contactDetails = [
-  { icon: MapPin, label: "Address", value: "123 Veterinary Lane, Bangalore, Karnataka 560001" },
-  { icon: Phone, label: "Phone", value: "+91 12345 67890", href: "tel:+911234567890" },
+  { icon: MapPin, label: "Address", value: "Sai Harsha Pearl Aura, Convent Rd, behind Mother of Sorrows Church, Brahmagiri, Udupi, Karnataka 576101" },
+  { icon: Phone, label: "Phone", value: "+91 70190 79154", href: "tel:+917019079154" },
   { icon: Mail, label: "Email", value: "info@samanvayavet.in", href: "mailto:info@samanvayavet.in" },
   { icon: Clock, label: "Hours", value: "Mon–Sat: 9:00 AM – 7:00 PM" },
 ];

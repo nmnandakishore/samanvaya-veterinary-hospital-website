@@ -15,18 +15,19 @@ export default function Home() {
       <WhyChooseUs />
       <StepsGuide />
       <AltFeatureBlock
-        imageSrc="/images/surgeries2.png"
+        imageSrc="/images/second-home.png"
         imageAlt="A dog in a caring environment"
         eyebrow="About Our Hospital"
         heading="Your Pet&rsquo;s Second Home"
         className="bg-surface"
+        centerMobile
         body="At Samanvaya Veterinary Hospital, we believe your pet deserves more than just treatment — they deserve a place where they feel safe, understood, and genuinely cared for. From the moment you walk through our doors, you&rsquo;ll notice the difference a compassionate team makes."
         cta={{ label: "About Us", href: "/about-us" }}
       />
       <PetGallery />
       <TrustSignals />
       <AltFeatureBlock
-        imageSrc="/images/state-of-the-art-equipment.png"
+        imageSrc="/images/professional.jpg"
         imageAlt="Veterinary medical equipment"
         eyebrow="Our Network"
         heading="Trusted by Professionals"

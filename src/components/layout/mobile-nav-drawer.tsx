@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, ChevronDown } from "lucide-react";
 import {
@@ -27,9 +28,17 @@ export function MobileNavDrawer() {
       />
       <SheetContent side="left" className="w-72 p-0">
         <SheetHeader className="px-4 pt-6 pb-2">
-          <SheetTitle className="text-left text-primary font-heading text-lg">
+          <SheetTitle className="sr-only">
             Samanvaya Veterinary Hospital
           </SheetTitle>
+          <Image
+            src="/samanvaya-logo-horizontal.svg"
+            alt="Samanvaya Veterinary Hospital"
+            width={0}
+            height={0}
+            className="h-10 w-auto object-contain"
+            unoptimized
+          />
         </SheetHeader>
 
         <nav className="flex flex-col px-2">
@@ -95,7 +104,7 @@ export function MobileNavDrawer() {
             <Link
               href="/book-appointment"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center w-full rounded-[6px] bg-secondary text-white font-medium px-5 py-2.5 hover:bg-secondary/90 transition-colors duration-150"
+              className="special-link-btn flex items-center justify-center w-full rounded-[6px] text-white font-medium px-5 py-2.5"
             >
               Book an Appointment
             </Link>

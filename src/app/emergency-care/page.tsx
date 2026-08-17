@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Phone, AlertTriangle, Activity, Heart, Wind, Brain, Droplets, Thermometer, Truck } from "lucide-react";
 import RelatedServices from "@/components/sections/related-services";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 
 const warningSigns = [
   { icon: AlertTriangle, title: "Difficulty Breathing", description: "Laboured breathing, choking, or blue/pale gums." },
@@ -56,11 +57,11 @@ export default function EmergencyCarePage() {
             If you&rsquo;re facing an emergency, call us now
           </p>
           <a
-            href="tel:+911234567890"
+            href="tel:+917019079154"
             className="inline-flex items-center gap-3 font-heading font-semibold text-white text-3xl md:text-4xl lg:text-5xl hover:text-white/90 transition-colors duration-150"
           >
             <Phone className="size-8 md:size-10" strokeWidth={1.5} />
-            +91 12345 67890
+            +91 70190 79154
           </a>
         </div>
       </section>
@@ -131,16 +132,16 @@ export default function EmergencyCarePage() {
               We&rsquo;re Here When You Need Us
             </p>
             <a
-              href="tel:+911234567890"
+              href="tel:+917019079154"
               className="font-heading font-semibold text-white text-2xl md:text-3xl hover:text-white/90 transition-colors"
             >
-              +91 12345 67890
+              +91 70190 79154
             </a>
             <p className="text-white/65 text-sm mt-2 mb-5 max-w-md mx-auto">
-              24 hours &middot; 365 days a year &middot; 123 Veterinary Lane, Pet City
+              24 hours &middot; 365 days a year &middot; Brahmagiri, Udupi, Karnataka
             </p>
             <a
-              href="tel:+911234567890"
+              href="tel:+917019079154"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-[6px] bg-white text-primary text-sm font-medium uppercase tracking-wider hover:bg-white/90 transition-colors"
             >
               <Phone className="size-4" strokeWidth={1.5} />
@@ -196,27 +197,17 @@ export default function EmergencyCarePage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7">
-              {[
-                { q: "What qualifies as a veterinary emergency?", a: "Any condition that threatens your pet&rsquo;s life or could cause permanent harm — difficulty breathing, severe bleeding, poisoning, trauma, seizures, collapse, or prolonged labour. If you&rsquo;re unsure, call us and we&rsquo;ll help you decide." },
-                { q: "Should I call before coming to the emergency room?", a: "Yes, please call us on the way. This lets us prepare the right team, equipment, and treatment area so care begins the moment you arrive." },
-                { q: "What if my pet has been poisoned?", a: "Call us immediately. Do not induce vomiting unless instructed by a veterinarian. Bring the packaging or substance if possible so we can identify the toxin and administer the correct antidote." },
-                { q: "How should I transport an injured pet?", a: "Use a sturdy carrier, crate, or flat board. Slide a blanket under your pet for support. Keep them warm and as still as possible. For larger dogs, a blanket stretcher with two people works best." },
-                { q: "Are you open on weekends and public holidays?", a: "Yes. Our emergency services are available 24 hours a day, 365 days a year — including weekends and all public holidays." },
-                { q: "Can I stay with my pet during treatment?", a: "In most cases, yes. We understand this is stressful for both you and your pet. However, during certain procedures or resuscitation efforts, we may ask you to wait in our comfortable reception area." },
-                { q: "What payment options do you accept for emergency services?", a: "We accept credit/debit cards, UPI, and net banking. Payment is due at the time of service for emergency care. Please call us for specific details." },
-              ].map((faq) => (
-                <details key={faq.q} className="group border-b border-gray-200">
-                  <summary className="flex items-center justify-between cursor-pointer list-none py-4 text-primary font-heading font-medium text-sm leading-snug">
-                    {faq.q}
-                    <span className="shrink-0 ml-4 text-secondary text-2xl font-light leading-none transition-transform duration-200 group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <div className="pb-5 text-primary/65 text-sm leading-relaxed -mt-1">
-                    {faq.a}
-                  </div>
-                </details>
-              ))}
+              <FaqAccordion
+                items={[
+                  { q: "What qualifies as a veterinary emergency?", a: "Any condition that threatens your pet&rsquo;s life or could cause permanent harm — difficulty breathing, severe bleeding, poisoning, trauma, seizures, collapse, or prolonged labour. If you&rsquo;re unsure, call us and we&rsquo;ll help you decide." },
+                  { q: "Should I call before coming to the emergency room?", a: "Yes, please call us on the way. This lets us prepare the right team, equipment, and treatment area so care begins the moment you arrive." },
+                  { q: "What if my pet has been poisoned?", a: "Call us immediately. Do not induce vomiting unless instructed by a veterinarian. Bring the packaging or substance if possible so we can identify the toxin and administer the correct antidote." },
+                  { q: "How should I transport an injured pet?", a: "Use a sturdy carrier, crate, or flat board. Slide a blanket under your pet for support. Keep them warm and as still as possible. For larger dogs, a blanket stretcher with two people works best." },
+                  { q: "Are you open on weekends and public holidays?", a: "Yes. Our emergency services are available 24 hours a day, 365 days a year — including weekends and all public holidays." },
+                  { q: "Can I stay with my pet during treatment?", a: "In most cases, yes. We understand this is stressful for both you and your pet. However, during certain procedures or resuscitation efforts, we may ask you to wait in our comfortable reception area." },
+                  { q: "What payment options do you accept for emergency services?", a: "We accept credit/debit cards, UPI, and net banking. Payment is due at the time of service for emergency care. Please call us for specific details." },
+                ]}
+              />
             </div>
             <div className="lg:col-span-5">
               <div className="border border-gray-200 bg-white p-8">
@@ -231,8 +222,8 @@ export default function EmergencyCarePage() {
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">
                       Phone
                     </span>
-                    <a href="tel:+911234567890" className="block text-secondary font-heading font-semibold text-xl mt-0.5 hover:text-primary transition-colors">
-                      +91 12345 67890
+                    <a href="tel:+917019079154" className="block text-secondary font-heading font-semibold text-xl mt-0.5 hover:text-primary transition-colors">
+                      +91 70190 79154
                     </a>
                   </div>
                   <div>
@@ -248,12 +239,12 @@ export default function EmergencyCarePage() {
                       Location
                     </span>
                     <p className="text-primary/75 text-sm mt-0.5">
-                      123 Veterinary Lane, Pet City, India
+                      Sai Harsha Pearl Aura, Convent Rd, behind Mother of Sorrows Church, Brahmagiri, Udupi, Karnataka 576101
                     </p>
                   </div>
                 </div>
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+917019079154"
                   className="special-link-btn mt-6 flex items-center justify-center gap-2 px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider"
                 >
                   <Phone className="size-4" strokeWidth={1.5} />

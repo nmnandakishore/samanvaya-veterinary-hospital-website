@@ -18,7 +18,7 @@ export default function ShopPage() {
         </p>
         <p className="text-primary/50 text-sm mb-8">
           In the meantime, please visit us in person or call us at{" "}
-          <strong className="text-primary">+91 12345 67890</strong> to inquire
+          <strong className="text-primary">+91 70190 79154</strong> to inquire
           about available products.
         </p>
         <Link

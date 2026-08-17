@@ -25,6 +25,8 @@ const slides = [
     cta: { label: "Meet the Team", href: "/about-us" },
     gradient:
       "linear-gradient(90deg, var(--color-accent-from) 0%, #002d5a 50%, var(--color-accent-to) 100%)",
+    image: "/images/team.png",
+    imageAlt: "Our veterinary team",
   },
   {
     eyebrow: "Full-Service Hospital",
@@ -119,8 +121,7 @@ export function HeroSlider() {
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
-      className="relative overflow-hidden"
-      style={{ height: "clamp(320px, 40vw, 600px)" }}
+      className="relative overflow-hidden lg:h-[clamp(380px,44vw,680px)]"
     >
       {slides.map((slide, index) => {
         const isActive = index === current;
@@ -131,7 +132,7 @@ export function HeroSlider() {
             aria-roledescription="slide"
             aria-label={`Slide ${index + 1} of ${slides.length}`}
             aria-hidden={!isActive}
-            className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+            className={`${isActive ? "relative" : "hidden"} lg:block lg:absolute lg:inset-0 lg:transition-opacity lg:duration-700 lg:ease-in-out`}
             style={{
               opacity: isActive ? 1 : 0,
               zIndex: isActive ? 1 : 0,
@@ -145,15 +146,17 @@ export function HeroSlider() {
 
             <div
               className={
-                "relative z-10 container-fluid h-full grid " +
+                "relative z-10 container-fluid h-full grid py-10 md:py-14 lg:py-0 " +
                 ("image" in slide && slide.image
-                  ? "grid-cols-1 lg:grid-cols-2 gap-8"
+                  ? "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] gap-8"
                   : "grid-cols-1 content-center")
               }
             >
               <div
                 className={
-                  "image" in slide && slide.image ? "flex items-center" : ""
+                  "image" in slide && slide.image
+                    ? "flex flex-col items-center justify-center text-center lg:items-start lg:text-left"
+                    : ""
                 }
               >
                 <div className="max-w-2xl">
@@ -162,13 +165,13 @@ export function HeroSlider() {
                       <span className="font-body text-xs font-medium uppercase tracking-[0.15em] text-white/70">
                         {slide.eyebrow}
                       </span>
-                      <hr className="mt-2 mb-6 w-10 border-white/40" />
+                      <hr className="mt-2 mb-6 w-10 border-white/40 mx-auto lg:mx-0" />
                     </>
                   )}
-                  <h2 className="font-heading font-semibold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-4">
+                  <h2 className="font-heading font-semibold text-white text-3xl md:text-4xl lg:text-5xl leading-tight mb-4">
                     {slide.heading}
                   </h2>
-                  <p className="text-white/75 text-lg md:text-xl max-w-xl mb-8">
+                  <p className="text-white/75 text-base md:text-lg max-w-xl mb-8">
                     {slide.subtitle}
                   </p>
                   {slide.cta && (
@@ -182,7 +185,7 @@ export function HeroSlider() {
                 </div>
               </div>
               {"image" in slide && slide.image && (
-                <div className="relative h-56 lg:h-full">
+                <div className="relative w-full h-64 md:h-80 lg:h-full order-first lg:order-none">
                   <Image
                     src={slide.image}
                     alt={slide.imageAlt ?? ""}

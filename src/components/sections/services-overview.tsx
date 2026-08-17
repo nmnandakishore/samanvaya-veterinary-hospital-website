@@ -46,7 +46,7 @@ export function ServicesOverview() {
             <Link
               key={service.title}
               href={service.href}
-              className="group bg-white px-8 py-10 transition-colors duration-150 hover:bg-surface-soft/30"
+              className="group bg-white py-10 transition-colors duration-150 hover:bg-surface-soft/30 sm:odd:pr-8 sm:even:pl-8 lg:[&:nth-child(4n+2)]:pr-8 lg:[&:nth-child(4n+3)]:pl-8"
             >
               <h3 className="font-heading font-semibold text-primary text-lg mb-3 group-hover:text-secondary transition-colors duration-150">
                 {service.title}

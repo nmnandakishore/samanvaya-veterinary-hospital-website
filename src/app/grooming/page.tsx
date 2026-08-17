@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Scissors, Bath, Sparkles, Ear, PawPrint, Wind, CalendarCheck, Search, ShowerHead, CheckCircle, Phone } from "lucide-react";
 import RelatedServices from "@/components/sections/related-services";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 
 const services = [
   { icon: Bath, title: "Full Bath & Dry", description: "Thorough bathing with vet-approved shampoos followed by careful drying to keep your pet&rsquo;s coat clean and healthy." },
@@ -167,21 +168,15 @@ export default function GroomingPage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7">
-              {[
-                { q: "How often should I have my pet professionally groomed?", a: "Every 4–8 weeks depending on breed, coat type, and lifestyle. Double-coated breeds benefit from more frequent de-shedding, while short-haired pets may need less frequent visits." },
-                { q: "Do you handle anxious or nervous pets?", a: "Yes. Our groomers are trained in low-stress handling techniques. We work at your pet&rsquo;s pace, take breaks when needed, and use calming products to create a positive experience." },
-                { q: "What products do you use for bathing?", a: "We use veterinary-recommended, pH-balanced shampoos and conditioners suitable for sensitive skin. Medicated and hypoallergenic options are available for pets with allergies or skin conditions." },
-                { q: "How long does a full grooming session take?", a: "Typically 1–3 hours depending on the size of your pet, coat condition, and the services requested. We will give you an estimated time when you drop off." },
-                { q: "Should I brush my pet before bringing them in?", a: "It helps, but is not required. If your pet has severe matting, please let us know in advance so we can allocate extra time and discuss the best approach." },
-              ].map((faq) => (
-                <details key={faq.q} className="group border-b border-gray-200">
-                  <summary className="flex items-center justify-between cursor-pointer list-none py-4 text-primary font-heading font-medium text-sm leading-snug">
-                    {faq.q}
-                    <span className="shrink-0 ml-4 text-secondary text-2xl font-light leading-none transition-transform duration-200 group-open:rotate-45">+</span>
-                  </summary>
-                  <div className="pb-5 text-primary/65 text-sm leading-relaxed -mt-1">{faq.a}</div>
-                </details>
-              ))}
+              <FaqAccordion
+                items={[
+                  { q: "How often should I have my pet professionally groomed?", a: "Every 4–8 weeks depending on breed, coat type, and lifestyle. Double-coated breeds benefit from more frequent de-shedding, while short-haired pets may need less frequent visits." },
+                  { q: "Do you handle anxious or nervous pets?", a: "Yes. Our groomers are trained in low-stress handling techniques. We work at your pet&rsquo;s pace, take breaks when needed, and use calming products to create a positive experience." },
+                  { q: "What products do you use for bathing?", a: "We use veterinary-recommended, pH-balanced shampoos and conditioners suitable for sensitive skin. Medicated and hypoallergenic options are available for pets with allergies or skin conditions." },
+                  { q: "How long does a full grooming session take?", a: "Typically 1–3 hours depending on the size of your pet, coat condition, and the services requested. We will give you an estimated time when you drop off." },
+                  { q: "Should I brush my pet before bringing them in?", a: "It helps, but is not required. If your pet has severe matting, please let us know in advance so we can allocate extra time and discuss the best approach." },
+                ]}
+              />
             </div>
             <div className="lg:col-span-5">
               <div className="border border-gray-200 bg-white p-8">
@@ -190,7 +185,7 @@ export default function GroomingPage() {
                 <div className="space-y-4">
                   <div>
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">Phone</span>
-                    <a href="tel:+911234567890" className="block text-secondary font-heading font-semibold text-xl mt-0.5 hover:text-primary transition-colors">+91 12345 67890</a>
+                    <a href="tel:+917019079154" className="block text-secondary font-heading font-semibold text-xl mt-0.5 hover:text-primary transition-colors">+91 70190 79154</a>
                   </div>
                   <div>
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">Grooming Hours</span>
@@ -198,10 +193,10 @@ export default function GroomingPage() {
                   </div>
                   <div>
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">Location</span>
-                    <p className="text-primary/75 text-sm mt-0.5">123 Veterinary Lane, Bangalore</p>
+                    <p className="text-primary/75 text-sm mt-0.5">Sai Harsha Pearl Aura, Convent Rd, behind Mother of Sorrows Church, Brahmagiri, Udupi, Karnataka 576101</p>
                   </div>
                 </div>
-                <a href="tel:+911234567890" className="special-link-btn mt-6 flex items-center justify-center gap-2 px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider">
+                <a href="tel:+917019079154" className="special-link-btn mt-6 flex items-center justify-center gap-2 px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider">
                   <Phone className="size-4" strokeWidth={1.5} />
                   Call Now
                 </a>

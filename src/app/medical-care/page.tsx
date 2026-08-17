@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, Stethoscope, Activity, Syringe, Bone, Microscope, ClipboardList, Phone } from "lucide-react";
 import RelatedServices from "@/components/sections/related-services";
+import { FaqAccordion } from "@/components/sections/faq-accordion";
 
 const services = [
   {
@@ -139,21 +140,15 @@ export default function MedicalCarePage() {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-7">
-              {[
-                { q: "What services are included in a routine wellness exam?", a: "A complete physical examination, dental check, weight and body condition assessment, vaccination review, parasite screening, and dietary counselling. Additional diagnostics are recommended based on your pet&rsquo;s age and health status." },
-                { q: "How often should I bring my pet for a checkup?", a: "Healthy adult pets should visit at least once a year. Puppies and kittens need more frequent visits for vaccinations and early development checks. Senior pets (7+ years) benefit from bi-annual exams." },
-                { q: "Do I need to fast my pet before blood work or surgery?", a: "Yes. We typically recommend fasting for 8–12 hours before anaesthesia or certain blood panels. You will receive clear instructions when your appointment is booked." },
-                { q: "How long does recovery take after surgery?", a: "Most routine procedures require 10–14 days of restricted activity. We provide a detailed post-operative care plan and schedule follow-up checks to monitor healing." },
-                { q: "What should I bring to my pet&rsquo;s first visit?", a: "Any previous medical records, vaccination history, a fresh stool sample, and your pet on a leash or in a carrier. Please arrive 10 minutes early for registration." },
-              ].map((faq) => (
-                <details key={faq.q} className="group border-b border-gray-200">
-                  <summary className="flex items-center justify-between cursor-pointer list-none py-4 text-primary font-heading font-medium text-sm leading-snug">
-                    {faq.q}
-                    <span className="shrink-0 ml-4 text-secondary text-2xl font-light leading-none transition-transform duration-200 group-open:rotate-45">+</span>
-                  </summary>
-                  <div className="pb-5 text-primary/65 text-sm leading-relaxed -mt-1">{faq.a}</div>
-                </details>
-              ))}
+              <FaqAccordion
+                items={[
+                  { q: "What services are included in a routine wellness exam?", a: "A complete physical examination, dental check, weight and body condition assessment, vaccination review, parasite screening, and dietary counselling. Additional diagnostics are recommended based on your pet&rsquo;s age and health status." },
+                  { q: "How often should I bring my pet for a checkup?", a: "Healthy adult pets should visit at least once a year. Puppies and kittens need more frequent visits for vaccinations and early development checks. Senior pets (7+ years) benefit from bi-annual exams." },
+                  { q: "Do I need to fast my pet before blood work or surgery?", a: "Yes. We typically recommend fasting for 8–12 hours before anaesthesia or certain blood panels. You will receive clear instructions when your appointment is booked." },
+                  { q: "How long does recovery take after surgery?", a: "Most routine procedures require 10–14 days of restricted activity. We provide a detailed post-operative care plan and schedule follow-up checks to monitor healing." },
+                  { q: "What should I bring to my pet&rsquo;s first visit?", a: "Any previous medical records, vaccination history, a fresh stool sample, and your pet on a leash or in a carrier. Please arrive 10 minutes early for registration." },
+                ]}
+              />
             </div>
             <div className="lg:col-span-5">
               <div className="border border-gray-200 bg-white p-8">
@@ -162,7 +157,7 @@ export default function MedicalCarePage() {
                 <div className="space-y-4">
                   <div>
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">Phone</span>
-                    <a href="tel:+911234567890" className="block text-secondary font-heading font-semibold text-xl mt-0.5 hover:text-primary transition-colors">+91 12345 67890</a>
+                    <a href="tel:+917019079154" className="block text-secondary font-heading font-semibold text-xl mt-0.5 hover:text-primary transition-colors">+91 70190 79154</a>
                   </div>
                   <div>
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">Hours</span>
@@ -170,10 +165,10 @@ export default function MedicalCarePage() {
                   </div>
                   <div>
                     <span className="text-xs font-medium uppercase tracking-wider text-primary/50">Location</span>
-                    <p className="text-primary/75 text-sm mt-0.5">123 Veterinary Lane, Bangalore</p>
+                    <p className="text-primary/75 text-sm mt-0.5">Sai Harsha Pearl Aura, Convent Rd, behind Mother of Sorrows Church, Brahmagiri, Udupi, Karnataka 576101</p>
                   </div>
                 </div>
-                <a href="tel:+911234567890" className="special-link-btn mt-6 flex items-center justify-center gap-2 px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider">
+                <a href="tel:+917019079154" className="special-link-btn mt-6 flex items-center justify-center gap-2 px-6 py-3 rounded-[6px] text-white text-sm font-medium uppercase tracking-wider">
                   <Phone className="size-4" strokeWidth={1.5} />
                   Call Now
                 </a>
